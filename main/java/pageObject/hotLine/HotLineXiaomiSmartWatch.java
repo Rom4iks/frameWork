@@ -27,23 +27,22 @@ public class HotLineXiaomiSmartWatch extends AbstractPage {
         filterPrice.click();
     }
 
-    public boolean priceFilter() {
-        ArrayList<Integer> prices = new ArrayList<Integer>();
-        boolean flag = true;
+   public ArrayList<Integer> pulledPriceList() {
         for (WebElement ele : listOfPrice
         ) {
             String texta = ele.getText();
-            Integer num = Integer.valueOf(texta.replaceAll("\\s",""));
-            prices.add(num);
-            System.out.println(num);
+            pulledPrices.add(Integer.valueOf(texta.replaceAll("\\s", "")));
+            System.out.println(Integer.valueOf(texta.replaceAll("\\s", "")));
         }
-        for (int i = 0; i < prices.size() - 1; i++) {
-            if (prices.get(i) > prices.get(i + 1))
-                flag = false;
-        }
-       return flag;
+       return pulledPrices;
     }
 
+    public ArrayList<Integer> sortedPriceList(){
+
+        Collections.sort(pulledPrices);
+
+        return pulledPrices;
+    }
 
     public HotLineXiaomiSmartWatch(WebDriver webDriver) {
         super(webDriver);
