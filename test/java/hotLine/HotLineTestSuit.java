@@ -19,7 +19,9 @@ public class HotLineTestSuit extends BaseTest {
 
         HotLineXiaomiSmartWatch xiaomiSmartWatch = new HotLineXiaomiSmartWatch(webDriver);
         xiaomiSmartWatch.sortingByPrice();
-        Thread.sleep(222);
-        Assert.assertTrue(xiaomiSmartWatch.priceFilter());
+       ArrayList<Integer> actual =  xiaomiSmartWatch.pulledPriceList();
+        ArrayList<Integer> expected =  xiaomiSmartWatch.sortedPriceList();
+
+        Assert.assertEquals("Filter working incorrectly",expected,actual);
     }
 }
